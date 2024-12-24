@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us" class="m-auto dark"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>Blog Java</title>
+
+<meta name="theme-color" content="" />
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta name="description" content="Website title" />
+<meta name="author" content="Hoang Anh" />
+<meta name="generator" content="aafu theme by Darshan in Hugo 0.140.0" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">        <link rel="manifest" href="/site.webmanifest">        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">        <link rel="shortcut icon" href="/favicon.ico">
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  <link href="/main.css" rel="stylesheet" />
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+    if (theme) {
+      theme === "dark"
+        ? html.classList.add("dark")
+        : html.classList.remove("dark");
+    } else if (html.classList.contains("dark")) {
+      window.localStorage.setItem("theme", "dark");
+    } else {
+      html.classList.remove("dark");
+      window.localStorage.setItem("theme", "light");
+    }
+
+    window.onload = () => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (window.localStorage.getItem("theme") === "dark") {
+        themeToggle.classList.remove("bi-moon-fill");
+        themeToggle.classList.add("bi-brightness-high");
+      } else {
+        themeToggle.classList.add("bi-moon-fill");
+        themeToggle.classList.remove("bi-brightness-high");
+      }
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="h-screen p-2 m-auto max-w-4xl flex flex-col">
+    
+    <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-300 dark:border-gray-700 justify-between"
+>
+  <div>
+    <a class="no-underline p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800" href="http://localhost:1313/">Home</a>    
+    <a class="no-underline p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800" href="/blog">Blog</a>
+  </div>
+  <div>
+  <a class="mr-4" href="/search"><i class="fas fa-search"></i></i></a>
+  <i
+    class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+    onclick="lightDark(this)"
+  ></i>
+</div>
+</header>
+
+<script>
+  const lightDark = (el) => {
+    let html = document.querySelector("html");
+    if (html.classList.contains("dark")) {
+      html.classList.remove("dark");
+      el.classList.add("fa-moon");
+      el.classList.remove("fa-sun");
+      window.localStorage.setItem("theme", "light");
+    } else {
+      html.classList.add("dark");
+      el.classList.add("fa-sun");
+      el.classList.remove("fa-moon");
+      window.localStorage.setItem("theme", "dark");
+    }
+  };
+</script>
+
+    
+    <main class="grow">
+<div class="prose prose-stone dark:prose-invert max-w-none">
+<div class="mb-3">
+  <h1 class="top-h1" style="font-size: 2.75em">6. Xử Lý Sự Kiện trong JavaScript</h1>
+  <p class="mb-1">December 24, 2024</p>
+  <p>&mdash;</p>
+</div>
+<div class="content">
+  <p>Sự kiện trong JavaScript là một hành động hoặc một sự thay đổi trong trạng thái của trang web mà người dùng thực hiện, như là nhấp chuột, nhập liệu, di chuột qua các phần tử, v.v. Xử lý sự kiện là một phần quan trọng trong lập trình web, giúp bạn tạo ra các trang web tương tác.</p>
+<h2 id="các-loại-sự-kiện-trong-javascript">Các Loại Sự Kiện trong JavaScript</h2>
+<p>Mouse Events: Các sự kiện liên quan đến chuột, như <code>click</code>, <code>dblclick</code>, <code>mouseover</code>, <code>mouseout</code>.
+Keyboard Events: Các sự kiện liên quan đến bàn phím, như <code>keydown</code>, <code>keyup</code>, <code>keypress</code>.
+Form Events: Các sự kiện liên quan đến form, như <code>submit</code>, <code>change</code>, <code>focus</code>, <code>blur</code>.
+Window Events: Các sự kiện liên quan đến cửa sổ trình duyệt, như <code>resize</code>, <code>scroll</code>, <code>load</code>.</p>
+<h2 id="thêm-sự-kiện-vào-phần-tử-html">Thêm Sự Kiện vào Phần Tử HTML</h2>
+<p>Trong JavaScript, bạn có thể thêm sự kiện vào phần tử HTML theo nhiều cách khác nhau. Dưới đây là các phương thức phổ biến:</p>
+<h3 id="1-thêm-sự-kiện-trực-tiếp-trong-html">1. Thêm sự kiện trực tiếp trong HTML</h3>
+<p>Đây là cách đơn giản nhất, bạn có thể thêm sự kiện trực tiếp vào trong thẻ HTML. Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">button</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert(&#39;Button clicked!&#39;)&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Click</span> <span style="color:#a6e22e">me</span><span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">button</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Trong ví dụ trên, khi người dùng nhấn vào nút, một hộp thông báo sẽ xuất hiện.</p>
+<h3 id="2-thêm-sự-kiện-qua-javascript">2. Thêm sự kiện qua JavaScript</h3>
+<p>Bạn cũng có thể thêm sự kiện qua JavaScript bằng cách sử dụng phương thức <code>addEventListener()</code>. Đây là cách phổ biến và linh hoạt hơn:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">document</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;myButton&#34;</span>)<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;Button clicked!&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Ví dụ trên sẽ thêm sự kiện <code>click</code> vào nút có id là <code>myButton</code> và hiển thị một hộp thông báo khi người dùng nhấn vào nút.</p>
+<h2 id="phương-thức-ngừng-sự-kiện">Phương Thức Ngừng Sự Kiện</h2>
+<p>Các sự kiện trong JavaScript có thể được ngừng lại nếu cần thiết bằng cách sử dụng phương thức <code>event.preventDefault()</code> hoặc <code>event.stopPropagation()</code>.</p>
+<h3 id="1-preventdefault">1. preventDefault()</h3>
+<p>Phương thức này ngừng hành vi mặc định của sự kiện, ví dụ như việc gửi một form khi nhấn nút submit:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">document</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;myForm&#34;</span>)<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;submit&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span><span style="color:#f92672">.</span><span style="color:#a6e22e">preventDefault</span>(); <span style="color:#75715e">// Ngừng gửi form
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;Form không được gửi!&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="2-stoppropagation">2. stopPropagation()</h3>
+<p>Phương thức này ngừng sự kiện tiếp tục xảy ra trong các phần tử cha của phần tử đã kích hoạt sự kiện:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">document</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;myButton&#34;</span>)<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span><span style="color:#f92672">.</span><span style="color:#a6e22e">stopPropagation</span>(); <span style="color:#75715e">// Ngừng sự kiện từ tiếp tục ở các phần tử cha
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;Button clicked!&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="kết-luận">Kết Luận</h2>
+<p>Xử lý sự kiện là một phần không thể thiếu trong việc xây dựng các trang web tương tác. Việc hiểu rõ cách sử dụng các sự kiện trong JavaScript giúp bạn tạo ra những ứng dụng web động và người dùng có trải nghiệm tốt hơn. Hãy thử áp dụng các sự kiện vào các dự án của bạn và khám phá thêm các phương thức khác để xử lý sự kiện hiệu quả hơn!</p>
+
+</div>
+</div>
+<div class="flex flex-row justify-around my-2">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/post_7/"
+      title="7. Một Số Bài Tập Java Cho Người Mới Bắt Đầu"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <a
+      href="/blog/post_5/"
+      title="5. Lập Trình Hướng Đối Tượng trong Java"
+    >
+      <i class="nav-menu fas fa-chevron-circle-right"></i>
+    </a>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class="text-sm text-center border-t border-gray-300 dark:border-gray-700  py-6 ">
+  <p class="markdownify">powered by <a href="https://gohugo.io/">hugo</a> &amp; deployed on <a href="https://www.cloudflare.com/">Cloudflare</a></p>
+  <p >
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </p>
+</footer>
+
+    
+  </body>
+</html>

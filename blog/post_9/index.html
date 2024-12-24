@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-us" class="m-auto dark"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>Blog Java</title>
+
+<meta name="theme-color" content="" />
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta name="description" content="Website title" />
+<meta name="author" content="Hoang Anh" />
+<meta name="generator" content="aafu theme by Darshan in Hugo 0.140.0" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">        <link rel="manifest" href="/site.webmanifest">        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">        <link rel="shortcut icon" href="/favicon.ico">
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  <link href="/main.css" rel="stylesheet" />
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+    if (theme) {
+      theme === "dark"
+        ? html.classList.add("dark")
+        : html.classList.remove("dark");
+    } else if (html.classList.contains("dark")) {
+      window.localStorage.setItem("theme", "dark");
+    } else {
+      html.classList.remove("dark");
+      window.localStorage.setItem("theme", "light");
+    }
+
+    window.onload = () => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (window.localStorage.getItem("theme") === "dark") {
+        themeToggle.classList.remove("bi-moon-fill");
+        themeToggle.classList.add("bi-brightness-high");
+      } else {
+        themeToggle.classList.add("bi-moon-fill");
+        themeToggle.classList.remove("bi-brightness-high");
+      }
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="h-screen p-2 m-auto max-w-4xl flex flex-col">
+    
+    <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-300 dark:border-gray-700 justify-between"
+>
+  <div>
+    <a class="no-underline p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800" href="http://localhost:1313/">Home</a>    
+    <a class="no-underline p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800" href="/blog">Blog</a>
+  </div>
+  <div>
+  <a class="mr-4" href="/search"><i class="fas fa-search"></i></i></a>
+  <i
+    class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+    onclick="lightDark(this)"
+  ></i>
+</div>
+</header>
+
+<script>
+  const lightDark = (el) => {
+    let html = document.querySelector("html");
+    if (html.classList.contains("dark")) {
+      html.classList.remove("dark");
+      el.classList.add("fa-moon");
+      el.classList.remove("fa-sun");
+      window.localStorage.setItem("theme", "light");
+    } else {
+      html.classList.add("dark");
+      el.classList.add("fa-sun");
+      el.classList.remove("fa-moon");
+      window.localStorage.setItem("theme", "dark");
+    }
+  };
+</script>
+
+    
+    <main class="grow">
+<div class="prose prose-stone dark:prose-invert max-w-none">
+<div class="mb-3">
+  <h1 class="top-h1" style="font-size: 2.75em">9. Lập Trình Mạng Máy Tính</h1>
+  <p class="mb-1">December 24, 2024</p>
+  <p>&mdash;</p>
+</div>
+<div class="content">
+  <p>Lập trình mạng máy tính là một lĩnh vực quan trọng trong phát triển phần mềm, giúp các hệ thống có thể giao tiếp và truyền tải dữ liệu giữa các thiết bị với nhau. Bài viết này sẽ giới thiệu các bài toán cơ bản trong lập trình mạng và các ví dụ code mẫu sử dụng các giao thức mạng như TCP và UDP.</p>
+<h2 id="bài-tập-1-xây-dựng-máy-chủ-tcp-đơn-giản">Bài Tập 1: Xây Dựng Máy Chủ TCP Đơn Giản</h2>
+<p>Đây là một bài toán cơ bản để bạn làm quen với việc xây dựng một máy chủ sử dụng giao thức TCP để nhận kết nối từ khách hàng.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleTCPServer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">void</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">String</span>[] <span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">ServerSocket</span> <span style="color:#a6e22e">serverSocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ServerSocket</span>(<span style="color:#ae81ff">12345</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">System</span><span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server đang chờ kết nối...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">Socket</span> <span style="color:#a6e22e">clientSocket</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">serverSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">System</span><span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Kết nối thành công từ: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">clientSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getInetAddress</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">InputStreamReader</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InputStreamReader</span>(<span style="color:#a6e22e">clientSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span>());
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">BufferedReader</span> <span style="color:#a6e22e">reader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BufferedReader</span>(<span style="color:#a6e22e">input</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">String</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">reader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">System</span><span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhận được từ client: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">clientSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">serverSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">IOException</span> <span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">e</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kết quả khi chạy chương trình sẽ nhận dữ liệu từ một client gửi đến. Dưới đây là một ví dụ về client có thể kết nối đến máy chủ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleTCPClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">void</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">String</span>[] <span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">Socket</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Socket</span>(<span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#ae81ff">12345</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">PrintWriter</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PrintWriter</span>(<span style="color:#a6e22e">socket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span>(), <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Chào từ client!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">socket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">IOException</span> <span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">e</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Khi chạy máy chủ và client, máy chủ sẽ nhận thông điệp &ldquo;Chào từ client!&rdquo; từ client và in ra màn hình.</p>
+<h2 id="bài-tập-2-xây-dựng-máy-chủ-udp-đơn-giản">Bài Tập 2: Xây Dựng Máy Chủ UDP Đơn Giản</h2>
+<p>UDP là giao thức không kết nối, thích hợp cho các ứng dụng không yêu cầu tính ổn định cao. Dưới đây là cách tạo một máy chủ UDP đơn giản.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleUDPServer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">void</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">String</span>[] <span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">DatagramSocket</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DatagramSocket</span>(<span style="color:#ae81ff">12345</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">byte</span>[] <span style="color:#a6e22e">receiveData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">byte</span>[<span style="color:#ae81ff">1024</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">DatagramPacket</span> <span style="color:#a6e22e">receivePacket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DatagramPacket</span>(<span style="color:#a6e22e">receiveData</span>, <span style="color:#a6e22e">receiveData</span><span style="color:#f92672">.</span><span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">socket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">receive</span>(<span style="color:#a6e22e">receivePacket</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">String</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">receivePacket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getData</span>(), <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">receivePacket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getLength</span>());
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">System</span><span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhận được từ client: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> <span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">e</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Ví dụ client để gửi dữ liệu đến máy chủ UDP:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleUDPClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">void</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">String</span>[] <span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">DatagramSocket</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DatagramSocket</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">String</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Chào từ client UDP!&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">DatagramPacket</span> <span style="color:#a6e22e">sendPacket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DatagramPacket</span>(<span style="color:#a6e22e">message</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span>(), <span style="color:#a6e22e">message</span><span style="color:#f92672">.</span><span style="color:#a6e22e">length</span>(), <span style="color:#a6e22e">InetAddress</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getByName</span>(<span style="color:#e6db74">&#34;localhost&#34;</span>), <span style="color:#ae81ff">12345</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">socket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">sendPacket</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">socket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> <span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">e</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Khi chạy máy chủ và client, máy chủ sẽ nhận thông điệp &ldquo;Chào từ client UDP!&rdquo; từ client và in ra màn hình.</p>
+<h2 id="bài-tập-3-chuyển-dữ-liệu-giữa-các-máy-chủ">Bài Tập 3: Chuyển Dữ Liệu Giữa Các Máy Chủ</h2>
+<p>Bài tập này yêu cầu bạn tạo một máy chủ trung gian (proxy) để chuyển tiếp các yêu cầu từ client đến một máy chủ đích khác.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">import</span> <span style="color:#a6e22e">java</span><span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProxyServer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">void</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">String</span>[] <span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">ServerSocket</span> <span style="color:#a6e22e">proxyServerSocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ServerSocket</span>(<span style="color:#ae81ff">12346</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">System</span><span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Proxy Server đang chờ kết nối...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">Socket</span> <span style="color:#a6e22e">clientSocket</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">proxyServerSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">Socket</span> <span style="color:#a6e22e">targetServerSocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Socket</span>(<span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#ae81ff">12345</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">InputStreamReader</span> <span style="color:#a6e22e">clientInput</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InputStreamReader</span>(<span style="color:#a6e22e">clientSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span>());
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">BufferedReader</span> <span style="color:#a6e22e">clientReader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BufferedReader</span>(<span style="color:#a6e22e">clientInput</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">PrintWriter</span> <span style="color:#a6e22e">targetWriter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PrintWriter</span>(<span style="color:#a6e22e">targetServerSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span>(), <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">String</span> <span style="color:#a6e22e">clientMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">clientReader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">targetWriter</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#a6e22e">clientMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">BufferedReader</span> <span style="color:#a6e22e">targetReader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BufferedReader</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InputStreamReader</span>(<span style="color:#a6e22e">targetServerSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span>()));
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">String</span> <span style="color:#a6e22e">targetMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">targetReader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">System</span><span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhận được từ máy chủ đích: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">targetMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">clientSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">targetServerSocket</span><span style="color:#f92672">.</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">IOException</span> <span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">e</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Trong bài tập này, client sẽ gửi yêu cầu đến proxy server, sau đó proxy server chuyển tiếp yêu cầu đến máy chủ đích và nhận lại dữ liệu từ máy chủ đích để trả về cho client.</p>
+<h2 id="kết-luận">Kết Luận</h2>
+<p>Việc làm quen với lập trình mạng máy tính giúp bạn hiểu cách các hệ thống giao tiếp với nhau qua mạng. Bạn có thể sử dụng các giao thức TCP và UDP để xây dựng các ứng dụng mạng cho nhiều mục đích khác nhau. Bài viết trên giới thiệu một số ví dụ cơ bản về lập trình mạng, và hy vọng sẽ giúp bạn có thêm kiến thức và kỹ năng cần thiết để tiếp cận các dự án lập trình mạng phức tạp hơn trong tương lai.</p>
+
+</div>
+</div>
+<div class="flex flex-row justify-around my-2">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <i class="text-gray-300 dark:text-gray-600 fas fa-chevron-circle-left"></i>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <a
+      href="/blog/post_8/"
+      title="8. Một Số Bài Tập JavaScript Cho Người Mới Bắt Đầu"
+    >
+      <i class="nav-menu fas fa-chevron-circle-right"></i>
+    </a>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class="text-sm text-center border-t border-gray-300 dark:border-gray-700  py-6 ">
+  <p class="markdownify">powered by <a href="https://gohugo.io/">hugo</a> &amp; deployed on <a href="https://www.cloudflare.com/">Cloudflare</a></p>
+  <p >
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </p>
+</footer>
+
+    
+  </body>
+</html>
